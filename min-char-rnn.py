@@ -45,7 +45,7 @@ def lossFun(inputs, targets, hprev):
   dWxh, dWhh, dWhy = np.zeros_like(Wxh), np.zeros_like(Whh), np.zeros_like(Why)
   dbh, dby = np.zeros_like(bh), np.zeros_like(by)
   dhnext = np.zeros_like(hs[0])
-  for t in reversed(xrange(len(inputs))):
+  for t in reversed(range(len(inputs))):
     dy = np.copy(ps[t])
     dy[targets[t]] -= 1 # backprop into y. see http://cs231n.github.io/neural-networks-case-study/#grad if confused here
     dWhy += np.dot(dy, hs[t].T)
@@ -68,7 +68,7 @@ def sample(h, seed_ix, n):
   x = np.zeros((vocab_size, 1))
   x[seed_ix] = 1
   ixes = []
-  for t in xrange(n):
+  for t in range(n):
     h = np.tanh(np.dot(Wxh, x) + np.dot(Whh, h) + bh)
     y = np.dot(Why, h) + by
     p = np.exp(y) / np.sum(np.exp(y))
